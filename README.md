@@ -79,23 +79,12 @@ cp -r seer-pr-review/seer-pr-review ~/.claude/skills/seer-pr-review
 
 ## Usage
 
-Once installed, skills are automatically invoked by Claude when relevant. You can also explicitly invoke them:
-
-### Automatic Invocation
-
-Simply mention the skill's domain in your request:
+Once installed, skills are automatically invoked by Claude when relevant to your request. Simply mention topics related to the skill:
 
 ```
 "Review the seer-by-sentry comments on PR #38"
 "Check if the seer feedback on this PR is valid"
-```
-
-### Manual Invocation
-
-Use the skill command:
-
-```
-/skill seer-pr-review
+"Check recent PRs for seer comments"
 ```
 
 ## Skill Structure

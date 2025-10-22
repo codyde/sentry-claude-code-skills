@@ -22,8 +22,6 @@ Claude Code will automatically load this skill when relevant.
 
 ## How to Use
 
-### Automatic Invocation
-
 Claude will automatically use this skill when you mention seer-by-sentry or PR reviews:
 
 ```
@@ -32,14 +30,6 @@ Claude will automatically use this skill when you mention seer-by-sentry or PR r
 "Apply fixes for seer bot comments"
 "Check recent PRs for seer comments"
 "Review any seer feedback on the latest PRs"
-```
-
-### Manual Invocation
-
-You can explicitly invoke the skill:
-
-```
-/skill seer-pr-review
 ```
 
 ## Example Usage
