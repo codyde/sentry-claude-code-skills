@@ -8,6 +8,10 @@ Skills are extensions that enhance Claude Code's capabilities by providing speci
 
 Learn more: [Claude Code Skills Documentation](https://docs.claude.com/claude-code/skills)
 
+## Why not just make more MCP tools?
+
+**Skills and MCP tools serve different purposes.** MCP tools connect Claude to external services and data sources (databases, APIs, monitoring platforms), while Skills package domain expertise and workflows directly into Claude's decision-making process. **Skills are automatically invoked by Claude when contextually relevant, whereas MCP tools require explicit calls—think of Skills as "teaching Claude how to think about a problem" versus MCP tools as "giving Claude access to external systems."**
+
 ## Available Skills
 
 ### 🔍 Seer-PR-Review
@@ -245,26 +249,7 @@ touch SKILL.md README.md INSTALL.md EXAMPLES.md QUICKREF.md install.sh
 # Follow existing skills as templates
 ```
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guidelines.
-
-## Support
-
-- **Issues**: [GitHub Issues](https://github.com/codyde/sentry-claude-code-skills/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/codyde/sentry-claude-code-skills/discussions)
-- **Documentation**: [Claude Code Docs](https://docs.claude.com/claude-code/skills)
-
-## License
-
-Each skill may have its own license. See individual skill directories for details.
-
-## Roadmap
-
-Future skills planned:
-
-- **Sentry Issue Analyzer**: Analyze and categorize Sentry issues
-- **Performance Reviewer**: Review performance metrics and suggest optimizations
-- **Security Scanner**: Scan code for security vulnerabilities
-- **Release Validator**: Validate releases before deployment
+ **Documentation**: [Claude Code Docs](https://docs.claude.com/claude-code/skills)
 
 ## Changelog
 
@@ -274,15 +259,6 @@ Future skills planned:
 - Added seer-pr-review skill
 - Created repository structure
 - Added install-all.sh script
-
-## Credits
-
-Created and maintained by [@codyde](https://github.com/codyde)
-
-Special thanks to:
-- Anthropic for Claude Code
-- Sentry for the amazing seer-by-sentry bot
-- The open source community
 
 ---
 
