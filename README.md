@@ -77,30 +77,6 @@ Or manually:
 cp -r seer-pr-review/seer-pr-review ~/.claude/skills/seer-pr-review
 ```
 
-## Prerequisites
-
-Before installing skills, ensure you have:
-
-- **Claude Code** with skills support
-- **Git** installed and configured
-- **GitHub CLI** (`gh`) installed and authenticated (for seer-pr-review)
-
-### Installing GitHub CLI
-
-```bash
-# macOS
-brew install gh
-
-# Linux (Debian/Ubuntu)
-sudo apt install gh
-
-# Windows
-winget install --id GitHub.cli
-
-# Authenticate
-gh auth login
-```
-
 ## Usage
 
 Once installed, skills are automatically invoked by Claude when relevant. You can also explicitly invoke them:
@@ -155,38 +131,6 @@ Then test in Claude Code:
 
 ```
 "Review seer comments on PR #[number]"
-```
-
-## Troubleshooting
-
-### Skill Not Loading
-
-1. Verify SKILL.md exists in `~/.claude/skills/[skill-name]/`
-2. Check file permissions: `chmod 644 ~/.claude/skills/[skill-name]/SKILL.md`
-3. Restart Claude Code
-4. Try explicit mention: "Use the [skill-name] skill"
-
-### GitHub CLI Issues
-
-```bash
-# Check if gh is installed
-gh --version
-
-# Check authentication
-gh auth status
-
-# Re-authenticate if needed
-gh auth login
-```
-
-### Git Issues
-
-```bash
-# Ensure clean working directory
-git status
-
-# Stash changes if needed
-git stash
 ```
 
 ## Updating Skills
