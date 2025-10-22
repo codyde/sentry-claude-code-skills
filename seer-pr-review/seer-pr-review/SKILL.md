@@ -1,6 +1,6 @@
 ---
-name: seer-reviewer
-description: Analyze, validate, and fix issues identified by seer-by-sentry bot in GitHub Pull Request reviews. Use this when asked to review or address seer-by-sentry comments on PRs.
+name: seer-pr-review
+description: Analyze, validate, and fix issues identified by seer-by-sentry bot in GitHub Pull Request reviews. Use this when asked to review or address seer-by-sentry comments on PRs. Can review specific PRs by number or automatically find recent PRs with seer comments.
 ---
 
 # Seer-by-Sentry PR Comment Reviewer
@@ -14,8 +14,41 @@ Invoke this skill when:
 - User mentions a PR with automated review comments
 - User wants to validate or implement fixes from automated review tools
 - User asks about a specific seer-by-sentry comment
+- User asks to check recent PRs for seer comments
 
 ## Workflow
+
+### Phase 0: Determine Target PR(s)
+
+**If PR number is provided:**
+- Proceed directly to Phase 1 with that PR number
+
+**If NO PR number is provided:**
+1. **List Recent PRs**
+   ```bash
+   gh pr list --limit 10 --json number,title,author,updatedAt,headRefName
+   ```
+
+2. **Check Each PR for Seer Comments**
+   For the most recent PRs (up to 5), check for seer-by-sentry comments:
+   ```bash
+   gh api repos/{owner}/{repo}/pulls/{pr_number}/comments
+   ```
+   Filter for comments from `seer-by-sentry[bot]`
+
+3. **Present Options to User**
+   If multiple PRs have seer comments:
+   ```markdown
+   Found seer-by-sentry comments on multiple recent PRs:
+   - PR #42: "Fix authentication flow" (3 seer comments)
+   - PR #38: "Update build script" (1 seer comment)
+
+   Which PR would you like me to review? Or should I review all of them?
+   ```
+
+4. **Default Behavior**
+   If only one PR has seer comments, automatically proceed with that PR.
+   If no recent PRs have seer comments, inform the user.
 
 ### Phase 1: Fetch and Parse Comments
 

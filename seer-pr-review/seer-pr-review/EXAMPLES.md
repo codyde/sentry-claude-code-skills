@@ -1,8 +1,96 @@
-# seer-reviewer Examples
+# seer-pr-review Examples
 
-Real-world examples of using the seer-reviewer skill.
+Real-world examples of using the seer-pr-review skill.
 
-## Example 1: Critical Path Resolution Bug
+## Example 1: Review Recent PRs Without Specifying Number
+
+### Scenario
+User wants to check if any recent PRs have seer-by-sentry comments, without knowing specific PR numbers.
+
+### User Input
+```
+"Check recent PRs for seer comments"
+```
+
+### Skill Execution
+
+#### Phase 1: List Recent PRs
+```bash
+gh pr list --limit 10 --json number,title,author,updatedAt,headRefName
+```
+
+Results:
+- PR #47: "Add user authentication" (updated 2 hours ago)
+- PR #42: "Fix database connection" (updated 5 hours ago)
+- PR #38: "Update build script" (updated 1 day ago)
+- PR #35: "Refactor API endpoints" (updated 3 days ago)
+- ...
+
+#### Phase 2: Check Each PR for Seer Comments
+```bash
+# Check PR #47
+gh api repos/codyde/sentryvibe/pulls/47/comments
+# Result: No seer comments
+
+# Check PR #42
+gh api repos/codyde/sentryvibe/pulls/42/comments
+# Result: 2 seer comments found (severity: 0.7, 0.5)
+
+# Check PR #38
+gh api repos/codyde/sentryvibe/pulls/38/comments
+# Result: 1 seer comment found (severity: 0.8)
+
+# Check PR #35
+gh api repos/codyde/sentryvibe/pulls/35/comments
+# Result: No seer comments
+```
+
+#### Phase 3: Present Options
+```markdown
+Found seer-by-sentry comments on recent PRs:
+
+• PR #38: "Update build script" (1 comment, severity: 0.8)
+  - Critical path resolution bug in build script
+
+• PR #42: "Fix database connection" (2 comments)
+  - Missing error handling (severity: 0.7)
+  - Inefficient query (severity: 0.5)
+
+Would you like me to:
+1. Review PR #38 first (highest severity)
+2. Review all PRs with seer comments
+3. Review a specific PR
+```
+
+#### Phase 4: User Chooses & Review Proceeds
+```
+User: Review PR #38 first
+
+Claude: I'll analyze the seer-by-sentry comment on PR #38...
+[Continues with standard review workflow from Example 2]
+```
+
+### Alternative: Auto-Review Single PR
+If only one PR has seer comments, automatically proceed:
+
+```
+User: Check recent PRs for seer comments
+
+Claude: Found 1 seer-by-sentry comment on PR #38...
+[Automatically begins review without asking]
+```
+
+### Alternative: No Comments Found
+```
+User: Are there any seer issues I should look at?
+
+Claude: I checked the 10 most recent PRs and found no seer-by-sentry comments.
+All recent PRs are clear! ✅
+```
+
+---
+
+## Example 2: Critical Path Resolution Bug
 
 ### Scenario
 Seer-by-sentry identifies that a build script moves a tarball to the wrong directory, which will break CI.
@@ -328,11 +416,20 @@ with low confidence scores. The bot correctly identified a subtle bug.
 
 ## Command Patterns
 
-### Quick Review
+### Review Specific PR
 ```
 "Review seer comments on PR #X"
 "Check seer feedback on PR #X"
 "What did seer-by-sentry say about PR #X?"
+```
+
+### Review Recent PRs (No PR Number)
+```
+"Check recent PRs for seer comments"
+"Review any seer feedback on the latest PRs"
+"Are there any seer issues I should look at?"
+"Find PRs with seer-by-sentry comments"
+"What recent PRs have seer comments?"
 ```
 
 ### Validate Specific Issue

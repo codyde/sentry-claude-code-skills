@@ -15,7 +15,7 @@ This skill provides a structured workflow for handling automated PR review comme
 
 The skill is already installed at:
 ```
-~/.claude/skills/seer-reviewer/
+~/.claude/skills/seer-pr-review/
 ```
 
 Claude Code will automatically load this skill when relevant.
@@ -30,6 +30,8 @@ Claude will automatically use this skill when you mention seer-by-sentry or PR r
 "Can you review the seer comments on PR #38?"
 "Check if the seer-by-sentry feedback on this PR is valid"
 "Apply fixes for seer bot comments"
+"Check recent PRs for seer comments"
+"Review any seer feedback on the latest PRs"
 ```
 
 ### Manual Invocation
@@ -37,15 +39,31 @@ Claude will automatically use this skill when you mention seer-by-sentry or PR r
 You can explicitly invoke the skill:
 
 ```
-/skill seer-reviewer
+/skill seer-pr-review
 ```
 
 ## Example Usage
 
-### Basic Review
+### Review Specific PR
 ```
 User: Review the seer-by-sentry comments on PR #38
-Claude: [Automatically uses seer-reviewer skill to fetch, analyze, and validate comments]
+Claude: [Automatically uses seer-pr-review skill to fetch, analyze, and validate comments]
+```
+
+### Review Recent PRs (No PR Number Required)
+```
+User: Check recent PRs for seer comments
+Claude: [Lists recent PRs, finds those with seer comments, and provides options]
+```
+
+```
+User: Review any seer feedback on the latest PRs
+Claude: [Checks last 10 PRs, identifies PRs with seer comments, and reviews them]
+```
+
+```
+User: Are there any seer issues I should look at?
+Claude: [Scans recent PRs for seer-by-sentry comments and reports findings]
 ```
 
 ### Implement Fixes
@@ -134,7 +152,7 @@ Without fix, CI verification would fail and block releases
 
 You can modify the skill by editing:
 ```
-~/.claude/skills/seer-reviewer/SKILL.md
+~/.claude/skills/seer-pr-review/SKILL.md
 ```
 
 Add custom rules, change priority thresholds, or adjust the workflow to match your team's needs.
@@ -177,7 +195,7 @@ PR has been updated with the fix.
 ## Troubleshooting
 
 **Skill not loading?**
-- Check that SKILL.md exists in `~/.claude/skills/seer-reviewer/`
+- Check that SKILL.md exists in `~/.claude/skills/seer-pr-review/`
 - Restart Claude Code if needed
 
 **Can't fetch PR comments?**
