@@ -1,20 +1,20 @@
 ---
 name: seer-pr-review
-description: Analyze, validate, and fix issues identified by seer-by-sentry bot in GitHub Pull Request reviews. Use this when asked to review or address seer-by-sentry comments on PRs. Can review specific PRs by number or automatically find recent PRs with seer comments.
+description: Analyze, validate, and fix issues identified by sentry-io bot in GitHub Pull Request reviews. Use this when asked to review or address sentry-io bot comments on PRs. Can review specific PRs by number or automatically find recent PRs with sentry comments.
 ---
 
-# Seer-by-Sentry PR Comment Reviewer
+# Sentry-io Bot PR Comment Reviewer
 
-This skill helps you systematically analyze, validate, and fix issues identified by the seer-by-sentry automated code review bot in GitHub Pull Requests.
+This skill helps you systematically analyze, validate, and fix issues identified by the sentry-io automated code review bot in GitHub Pull Requests.
 
 ## When to Use This Skill
 
 Invoke this skill when:
-- User asks to "review seer comments" or "check seer-by-sentry feedback"
+- User asks to "review sentry comments" or "check sentry-io bot feedback"
 - User mentions a PR with automated review comments
 - User wants to validate or implement fixes from automated review tools
-- User asks about a specific seer-by-sentry comment
-- User asks to check recent PRs for seer comments
+- User asks about a specific sentry-io bot comment
+- User asks to check recent PRs for sentry comments
 
 ## Workflow
 
@@ -29,26 +29,26 @@ Invoke this skill when:
    gh pr list --limit 10 --json number,title,author,updatedAt,headRefName
    ```
 
-2. **Check Each PR for Seer Comments**
-   For the most recent PRs (up to 5), check for seer-by-sentry comments:
+2. **Check Each PR for Sentry Comments**
+   For the most recent PRs (up to 5), check for sentry-io bot comments:
    ```bash
    gh api repos/{owner}/{repo}/pulls/{pr_number}/comments
    ```
-   Filter for comments from `seer-by-sentry[bot]`
+   Filter for comments from `sentry-io[bot]`
 
 3. **Present Options to User**
-   If multiple PRs have seer comments:
+   If multiple PRs have sentry comments:
    ```markdown
-   Found seer-by-sentry comments on multiple recent PRs:
-   - PR #42: "Fix authentication flow" (3 seer comments)
-   - PR #38: "Update build script" (1 seer comment)
+   Found sentry-io bot comments on multiple recent PRs:
+   - PR #42: "Fix authentication flow" (3 sentry comments)
+   - PR #38: "Update build script" (1 sentry comment)
 
    Which PR would you like me to review? Or should I review all of them?
    ```
 
 4. **Default Behavior**
-   If only one PR has seer comments, automatically proceed with that PR.
-   If no recent PRs have seer comments, inform the user.
+   If only one PR has sentry comments, automatically proceed with that PR.
+   If no recent PRs have sentry comments, inform the user.
 
 ### Phase 1: Fetch and Parse Comments
 
@@ -57,10 +57,10 @@ Invoke this skill when:
    gh api repos/{owner}/{repo}/pulls/{pr_number}/comments
    ```
 
-   Look for comments from user `seer-by-sentry[bot]` (login: `seer-by-sentry[bot]`, id: 157164994)
+   Look for comments from user `sentry-io[bot]` (login: `sentry-io[bot]`)
 
 2. **Parse Comment Structure**
-   Seer comments typically include:
+   Sentry-io bot comments typically include:
    - **Summary**: Brief description of the issue
    - **Description**: Detailed explanation of the problem
    - **Suggested fix**: Concrete recommendation
@@ -152,11 +152,11 @@ When you've validated the issue is real:
 4. **Commit the Change**
    ```bash
    git add <files>
-   git commit -m "fix: address seer-by-sentry comment - <brief description>
+   git commit -m "fix: address sentry-io bot comment - <brief description>
 
    <detailed explanation of what was fixed>
 
-   Resolves issue identified by seer-by-sentry bot.
+   Resolves issue identified by sentry-io bot.
    Severity: <severity>, Confidence: <confidence>
 
    🤖 Generated with [Claude Code](https://claude.com/claude-code)
@@ -174,7 +174,7 @@ When you've validated the issue is real:
 Provide a structured summary:
 
 ```markdown
-## Seer-by-Sentry Comment Review
+## Sentry-io Bot Comment Review
 
 ### Comment Analysis
 - **Location**: file_path:line_number
@@ -215,7 +215,7 @@ Provide a structured summary:
 - ❌ Push directly to main/master
 - ❌ Forget to switch branches after fixing
 
-## Common Seer Issue Types
+## Common Sentry-io Bot Issue Types
 
 ### 1. Path Resolution Errors
 **Pattern**: Build scripts move files to wrong locations
@@ -253,7 +253,7 @@ If you determine a comment is a false positive:
 
 2. **Add a Comment to PR**
    ```bash
-   gh pr comment {pr_number} --body "Seer comment at file:line appears to be a false positive because..."
+   gh pr comment {pr_number} --body "Sentry-io bot comment at file:line appears to be a false positive because..."
    ```
 
 3. **Consider Improving the Code**
@@ -288,7 +288,7 @@ git checkout fix-branch
 git add .
 git commit -m "fix: correct path in build script
 
-Fixes path resolution issue identified by seer-by-sentry.
+Fixes path resolution issue identified by sentry-io bot.
 ..."
 git push origin fix-branch
 
@@ -298,7 +298,7 @@ git checkout main
 
 ## Success Criteria
 
-A successful seer-reviewer session:
+A successful sentry-reviewer session:
 - ✅ All comments analyzed and categorized
 - ✅ Critical issues (severity >= 0.8) addressed or documented
 - ✅ Fixes validated before committing

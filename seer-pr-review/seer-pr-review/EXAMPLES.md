@@ -5,11 +5,11 @@ Real-world examples of using the seer-pr-review skill.
 ## Example 1: Review Recent PRs Without Specifying Number
 
 ### Scenario
-User wants to check if any recent PRs have seer-by-sentry comments, without knowing specific PR numbers.
+User wants to check if any recent PRs have sentry-io bot comments, without knowing specific PR numbers.
 
 ### User Input
 ```
-"Check recent PRs for seer comments"
+"Check recent PRs for sentry comments"
 ```
 
 ### Skill Execution
@@ -26,28 +26,28 @@ Results:
 - PR #35: "Refactor API endpoints" (updated 3 days ago)
 - ...
 
-#### Phase 2: Check Each PR for Seer Comments
+#### Phase 2: Check Each PR for Sentry Comments
 ```bash
 # Check PR #47
 gh api repos/codyde/sentryvibe/pulls/47/comments
-# Result: No seer comments
+# Result: No sentry comments
 
 # Check PR #42
 gh api repos/codyde/sentryvibe/pulls/42/comments
-# Result: 2 seer comments found (severity: 0.7, 0.5)
+# Result: 2 sentry comments found (severity: 0.7, 0.5)
 
 # Check PR #38
 gh api repos/codyde/sentryvibe/pulls/38/comments
-# Result: 1 seer comment found (severity: 0.8)
+# Result: 1 sentry comment found (severity: 0.8)
 
 # Check PR #35
 gh api repos/codyde/sentryvibe/pulls/35/comments
-# Result: No seer comments
+# Result: No sentry comments
 ```
 
 #### Phase 3: Present Options
 ```markdown
-Found seer-by-sentry comments on recent PRs:
+Found sentry-io bot comments on recent PRs:
 
 • PR #38: "Update build script" (1 comment, severity: 0.8)
   - Critical path resolution bug in build script
@@ -58,7 +58,7 @@ Found seer-by-sentry comments on recent PRs:
 
 Would you like me to:
 1. Review PR #38 first (highest severity)
-2. Review all PRs with seer comments
+2. Review all PRs with sentry comments
 3. Review a specific PR
 ```
 
@@ -66,25 +66,25 @@ Would you like me to:
 ```
 User: Review PR #38 first
 
-Claude: I'll analyze the seer-by-sentry comment on PR #38...
+Claude: I'll analyze the sentry-io bot comment on PR #38...
 [Continues with standard review workflow from Example 2]
 ```
 
 ### Alternative: Auto-Review Single PR
-If only one PR has seer comments, automatically proceed:
+If only one PR has sentry comments, automatically proceed:
 
 ```
-User: Check recent PRs for seer comments
+User: Check recent PRs for sentry comments
 
-Claude: Found 1 seer-by-sentry comment on PR #38...
+Claude: Found 1 sentry-io bot comment on PR #38...
 [Automatically begins review without asking]
 ```
 
 ### Alternative: No Comments Found
 ```
-User: Are there any seer issues I should look at?
+User: Are there any sentry issues I should look at?
 
-Claude: I checked the 10 most recent PRs and found no seer-by-sentry comments.
+Claude: I checked the 10 most recent PRs and found no sentry-io bot comments.
 All recent PRs are clear! ✅
 ```
 
@@ -93,11 +93,11 @@ All recent PRs are clear! ✅
 ## Example 2: Critical Path Resolution Bug
 
 ### Scenario
-Seer-by-sentry identifies that a build script moves a tarball to the wrong directory, which will break CI.
+Sentry-io bot identifies that a build script moves a tarball to the wrong directory, which will break CI.
 
 ### User Input
 ```
-"Review the seer comments on PR #38"
+"Review the sentry comments on PR #38"
 ```
 
 ### Skill Execution
@@ -150,7 +150,7 @@ Fix build:agent-core script to move tarball to correct location.
 The script was moving to ../../vendor/ (repo root) instead of
 ../../apps/runner/vendor/ where CI expects it.
 
-Resolves issue identified by seer-by-sentry bot.
+Resolves issue identified by sentry-io bot.
 Severity: 0.8, Confidence: 1.0
 
 🤖 Generated with [Claude Code](https://claude.com/claude-code)
@@ -163,7 +163,7 @@ git push origin fix/linux-pnpm-opentelemetry
 
 #### Phase 5: Report
 ```markdown
-## Seer-by-Sentry Comment Review
+## Sentry-io Bot Comment Review
 
 ### Comment Analysis
 - **Location**: .github/workflows/release-cli.yml:34
@@ -192,14 +192,14 @@ CLI releases.
 
 ---
 
-## Example 2: False Positive Detection
+## Example 3: False Positive Detection
 
 ### Scenario
-Seer-by-sentry flags potential race condition, but code is actually safe.
+Sentry-io bot flags potential race condition, but code is actually safe.
 
 ### User Input
 ```
-"Check if that seer comment about the async issue is valid"
+"Check if that sentry comment about the async issue is valid"
 ```
 
 ### Skill Execution
@@ -227,7 +227,7 @@ async function processItems() {
 
 #### Report
 ```markdown
-## Seer Comment Analysis
+## Sentry Comment Analysis
 
 ### Validation Result
 ❌ FALSE POSITIVE
@@ -250,14 +250,14 @@ Commented on PR to document this false positive.
 
 ---
 
-## Example 3: Multiple Issues, Prioritized
+## Example 4: Multiple Issues, Prioritized
 
 ### Scenario
-PR has 3 seer-by-sentry comments with different priorities.
+PR has 3 sentry-io bot comments with different priorities.
 
 ### User Input
 ```
-"Fix all seer issues on PR #47"
+"Fix all sentry issues on PR #47"
 ```
 
 ### Comments Found
@@ -316,7 +316,7 @@ items.filter(item => item.active).forEach(processItem);
 
 ### Final Report
 ```markdown
-## Multiple Seer Issues - PR #47
+## Multiple Sentry-io Bot Issues - PR #47
 
 ### Summary
 - Total Comments: 3
@@ -340,14 +340,14 @@ All critical and medium issues resolved. PR updated.
 
 ---
 
-## Example 4: Investigation Required
+## Example 5: Investigation Required
 
 ### Scenario
 High severity but low confidence - needs thorough investigation.
 
 ### User Input
 ```
-"What's this seer warning about the memory leak?"
+"What's this sentry warning about the memory leak?"
 ```
 
 ### Comment Details
@@ -418,36 +418,36 @@ with low confidence scores. The bot correctly identified a subtle bug.
 
 ### Review Specific PR
 ```
-"Review seer comments on PR #X"
-"Check seer feedback on PR #X"
-"What did seer-by-sentry say about PR #X?"
+"Review sentry comments on PR #X"
+"Check sentry feedback on PR #X"
+"What did sentry-io bot say about PR #X?"
 ```
 
 ### Review Recent PRs (No PR Number)
 ```
-"Check recent PRs for seer comments"
-"Review any seer feedback on the latest PRs"
-"Are there any seer issues I should look at?"
-"Find PRs with seer-by-sentry comments"
-"What recent PRs have seer comments?"
+"Check recent PRs for sentry comments"
+"Review any sentry feedback on the latest PRs"
+"Are there any sentry issues I should look at?"
+"Find PRs with sentry-io bot comments"
+"What recent PRs have sentry comments?"
 ```
 
 ### Validate Specific Issue
 ```
-"Is that seer comment about [topic] actually valid?"
-"Check if the seer warning about [file] is a real problem"
+"Is that sentry comment about [topic] actually valid?"
+"Check if the sentry warning about [file] is a real problem"
 ```
 
 ### Implement Fixes
 ```
-"Fix the seer issues on PR #X"
-"Apply the seer-by-sentry suggestions to PR #X"
-"Implement fixes for seer comments"
+"Fix the sentry issues on PR #X"
+"Apply the sentry-io bot suggestions to PR #X"
+"Implement fixes for sentry comments"
 ```
 
 ### Investigation Mode
 ```
-"Investigate the seer warning about [topic]"
-"Why is seer flagging [file]?"
-"Explain the seer comment on line X"
+"Investigate the sentry warning about [topic]"
+"Why is sentry flagging [file]?"
+"Explain the sentry comment on line X"
 ```

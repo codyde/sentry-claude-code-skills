@@ -1,10 +1,10 @@
-# Seer-by-Sentry PR Comment Reviewer Skill
+# Sentry PR Comment Reviewer Skill
 
-A Claude Code skill for systematically analyzing, validating, and fixing issues identified by the seer-by-sentry automated code review bot in GitHub Pull Requests.
+A Claude Code skill for systematically analyzing, validating, and fixing issues identified by the sentry-io automated code review bot in GitHub Pull Requests.
 
 ## Overview
 
-This skill provides a structured workflow for handling automated PR review comments from seer-by-sentry, including:
+This skill provides a structured workflow for handling automated PR review comments from sentry-io bot, including:
 - Fetching and parsing bot comments
 - Validating whether issues are real or false positives
 - Assessing severity and confidence scores
@@ -22,49 +22,49 @@ Claude Code will automatically load this skill when relevant.
 
 ## How to Use
 
-Claude will automatically use this skill when you mention seer-by-sentry or PR reviews:
+Claude will automatically use this skill when you mention sentry-io bot or PR reviews:
 
 ```
-"Can you review the seer comments on PR #38?"
-"Check if the seer-by-sentry feedback on this PR is valid"
-"Apply fixes for seer bot comments"
-"Check recent PRs for seer comments"
-"Review any seer feedback on the latest PRs"
+"Can you review the sentry comments on PR #38?"
+"Check if the sentry-io bot feedback on this PR is valid"
+"Apply fixes for sentry bot comments"
+"Check recent PRs for sentry comments"
+"Review any sentry feedback on the latest PRs"
 ```
 
 ## Example Usage
 
 ### Review Specific PR
 ```
-User: Review the seer-by-sentry comments on PR #38
+User: Review the sentry-io bot comments on PR #38
 Claude: [Automatically uses seer-pr-review skill to fetch, analyze, and validate comments]
 ```
 
 ### Review Recent PRs (No PR Number Required)
 ```
-User: Check recent PRs for seer comments
-Claude: [Lists recent PRs, finds those with seer comments, and provides options]
+User: Check recent PRs for sentry comments
+Claude: [Lists recent PRs, finds those with sentry comments, and provides options]
 ```
 
 ```
-User: Review any seer feedback on the latest PRs
-Claude: [Checks last 10 PRs, identifies PRs with seer comments, and reviews them]
+User: Review any sentry feedback on the latest PRs
+Claude: [Checks last 10 PRs, identifies PRs with sentry comments, and reviews them]
 ```
 
 ```
-User: Are there any seer issues I should look at?
-Claude: [Scans recent PRs for seer-by-sentry comments and reports findings]
+User: Are there any sentry issues I should look at?
+Claude: [Scans recent PRs for sentry-io bot comments and reports findings]
 ```
 
 ### Implement Fixes
 ```
-User: Fix the issues identified by seer on PR #42
+User: Fix the issues identified by sentry bot on PR #42
 Claude: [Uses skill to validate issues, checkout branch, apply fixes, and push]
 ```
 
 ### Validate Specific Comment
 ```
-User: Is the seer comment about the build path actually a problem?
+User: Is the sentry comment about the build path actually a problem?
 Claude: [Uses skill to analyze that specific comment and provide assessment]
 ```
 
@@ -114,7 +114,7 @@ Claude: [Uses skill to analyze that specific comment and provide assessment]
 The skill provides structured reports:
 
 ```markdown
-## Seer-by-Sentry Comment Review
+## Sentry-io Bot Comment Review
 
 ### Comment Analysis
 - Location: file.ts:42
@@ -158,9 +158,9 @@ Add custom rules, change priority thresholds, or adjust the workflow to match yo
 ## Example Session
 
 ```bash
-User: Review seer comments on PR #38
+User: Review sentry comments on PR #38
 
-Claude: I'll analyze the seer-by-sentry comments on PR #38.
+Claude: I'll analyze the sentry-io bot comments on PR #38.
 
 [Fetches comments...]
 [Analyzes 1 comment found...]
