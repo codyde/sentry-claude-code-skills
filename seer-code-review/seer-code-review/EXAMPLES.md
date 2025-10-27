@@ -1,6 +1,6 @@
-# seer-pr-review Examples
+# seer-code-review Examples
 
-Real-world examples of using the seer-pr-review skill.
+Real-world examples of using the seer-code-review skill.
 
 ## Example 1: Review Recent PRs Without Specifying Number
 

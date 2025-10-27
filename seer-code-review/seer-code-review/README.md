@@ -15,7 +15,7 @@ This skill provides a structured workflow for handling automated PR review comme
 
 The skill is already installed at:
 ```
-~/.claude/skills/seer-pr-review/
+~/.claude/skills/seer-code-review/
 ```
 
 Claude Code will automatically load this skill when relevant.
@@ -37,7 +37,7 @@ Claude will automatically use this skill when you mention sentry-io bot or PR re
 ### Review Specific PR
 ```
 User: Review the sentry-io bot comments on PR #38
-Claude: [Automatically uses seer-pr-review skill to fetch, analyze, and validate comments]
+Claude: [Automatically uses seer-code-review skill to fetch, analyze, and validate comments]
 ```
 
 ### Review Recent PRs (No PR Number Required)
@@ -142,7 +142,7 @@ Without fix, CI verification would fail and block releases
 
 You can modify the skill by editing:
 ```
-~/.claude/skills/seer-pr-review/SKILL.md
+~/.claude/skills/seer-code-review/SKILL.md
 ```
 
 Add custom rules, change priority thresholds, or adjust the workflow to match your team's needs.
@@ -185,7 +185,7 @@ PR has been updated with the fix.
 ## Troubleshooting
 
 **Skill not loading?**
-- Check that SKILL.md exists in `~/.claude/skills/seer-pr-review/`
+- Check that SKILL.md exists in `~/.claude/skills/seer-code-review/`
 - Restart Claude Code if needed
 
 **Can't fetch PR comments?**

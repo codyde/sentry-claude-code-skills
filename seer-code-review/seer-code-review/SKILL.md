@@ -1,5 +1,5 @@
 ---
-name: seer-pr-review
+name: seer-code-review
 description: Analyze, validate, and fix issues identified by sentry-io bot in GitHub Pull Request reviews. Use this when asked to review or address sentry-io bot comments on PRs. Can review specific PRs by number or automatically find recent PRs with sentry comments.
 ---
 
