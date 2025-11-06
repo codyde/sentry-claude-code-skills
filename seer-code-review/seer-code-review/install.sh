@@ -1,17 +1,17 @@
 #!/bin/bash
 #
-# seer-pr-review Installation Script
-# Installs the skill to ~/.claude/skills/seer-pr-review/
+# seer-code-review Installation Script
+# Installs the skill to ~/.claude/skills/seer-code-review/
 #
 
 set -e
 
-SKILL_NAME="seer-pr-review"
+SKILL_NAME="seer-code-review"
 INSTALL_DIR="$HOME/.claude/skills/$SKILL_NAME"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "  seer-pr-review Installation"
+echo "  seer-code-review Installation"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
 
@@ -38,10 +38,12 @@ fi
 echo "Installing skill to: $INSTALL_DIR"
 mkdir -p "$INSTALL_DIR"
 
-# Copy required files
+# Copy required and supporting files
 cp "$SCRIPT_DIR/SKILL.md" "$INSTALL_DIR/"
-cp "$SCRIPT_DIR/README.md" "$INSTALL_DIR/"
-cp "$SCRIPT_DIR/QUICKREF.md" "$INSTALL_DIR/"
+cp "$SCRIPT_DIR/README.md" "$INSTALL_DIR/" 2>/dev/null || true
+cp "$SCRIPT_DIR/QUICKREF.md" "$INSTALL_DIR/" 2>/dev/null || true
+cp "$SCRIPT_DIR/EXAMPLES.md" "$INSTALL_DIR/" 2>/dev/null || true
+cp "$SCRIPT_DIR/LICENSE" "$INSTALL_DIR/" 2>/dev/null || true
 
 echo "✓ Skill files installed"
 
@@ -57,12 +59,12 @@ if [ -f "$INSTALL_DIR/SKILL.md" ]; then
     echo ""
     echo "Next steps:"
     echo "  1. Restart Claude Code (if running)"
-    echo "  2. Try: 'Review seer comments on PR #X'"
+    echo "  2. Try: 'Review sentry comments on PR #X'"
     echo ""
     echo "Documentation:"
     echo "  • Usage guide: $INSTALL_DIR/README.md"
     echo "  • Quick reference: $INSTALL_DIR/QUICKREF.md"
-    echo "  • Examples: See EXAMPLES.md in this directory"
+    echo "  • Examples: $INSTALL_DIR/EXAMPLES.md"
     echo ""
 else
     echo "❌ Installation failed - SKILL.md not found"

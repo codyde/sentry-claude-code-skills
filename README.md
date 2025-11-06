@@ -16,7 +16,7 @@ Learn more: [Claude Code Skills Documentation](https://docs.claude.com/claude-co
 
 ### 🔍 Seer-PR-Review
 
-Systematically analyze, validate, and fix issues identified by the seer-by-sentry automated code review bot in GitHub Pull Requests.
+Systematically analyze, validate, and fix issues identified by the sentry automated code review bot in GitHub Pull Requests.
 
 **Features:**
 - Fetch and parse bot comments from PRs
@@ -82,7 +82,7 @@ cp -r seer-pr-review/seer-pr-review ~/.claude/skills/seer-pr-review
 Once installed, skills are automatically invoked by Claude when relevant to your request. Simply mention topics related to the skill:
 
 ```
-"Review the seer-by-sentry comments on PR #38"
+"Review the sentry comments on PR #38"
 "Check if the seer feedback on this PR is valid"
 "Check recent PRs for seer comments"
 ```

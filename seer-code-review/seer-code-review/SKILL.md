@@ -1,19 +1,20 @@
 ---
 name: seer-code-review
-description: Analyze, validate, and fix issues identified by sentry-io bot in GitHub Pull Request reviews. Use this when asked to review or address sentry-io bot comments on PRs. Can review specific PRs by number or automatically find recent PRs with sentry comments.
+description: Analyze, validate, and fix issues identified by sentry bot in GitHub Pull Request reviews. Use this when asked to review or address sentry bot comments on PRs. Can review specific PRs by number or automatically find recent PRs with sentry comments.
 ---
 
-# Sentry-io Bot PR Comment Reviewer
+# Sentry Bot PR Comment Reviewer
 
-This skill helps you systematically analyze, validate, and fix issues identified by the sentry-io automated code review bot in GitHub Pull Requests.
+This skill helps you systematically analyze, validate, and fix issues identified by the sentry automated code review bot in GitHub Pull Requests.
 
 ## When to Use This Skill
 
 Invoke this skill when:
-- User asks to "review sentry comments" or "check sentry-io bot feedback"
+- User asks to "review sentry comments" or "check sentry bot feedback"
+- user asks to "check for code reviews"
 - User mentions a PR with automated review comments
 - User wants to validate or implement fixes from automated review tools
-- User asks about a specific sentry-io bot comment
+- User asks about a specific sentry bot comment
 - User asks to check recent PRs for sentry comments
 
 ## Workflow
@@ -30,16 +31,16 @@ Invoke this skill when:
    ```
 
 2. **Check Each PR for Sentry Comments**
-   For the most recent PRs (up to 5), check for sentry-io bot comments:
+   For the most recent PRs (up to 5), check for sentry bot comments:
    ```bash
    gh api repos/{owner}/{repo}/pulls/{pr_number}/comments
    ```
-   Filter for comments from `sentry-io[bot]`
+   Filter for comments from `sentry[bot]`
 
 3. **Present Options to User**
    If multiple PRs have sentry comments:
    ```markdown
-   Found sentry-io bot comments on multiple recent PRs:
+   Found sentry bot comments on multiple recent PRs:
    - PR #42: "Fix authentication flow" (3 sentry comments)
    - PR #38: "Update build script" (1 sentry comment)
 
@@ -57,10 +58,10 @@ Invoke this skill when:
    gh api repos/{owner}/{repo}/pulls/{pr_number}/comments
    ```
 
-   Look for comments from user `sentry-io[bot]` (login: `sentry-io[bot]`)
+   Look for comments from user `sentry[bot]` (login: `sentry[bot]`)
 
 2. **Parse Comment Structure**
-   Sentry-io bot comments typically include:
+   Sentry bot comments typically include:
    - **Summary**: Brief description of the issue
    - **Description**: Detailed explanation of the problem
    - **Suggested fix**: Concrete recommendation
@@ -152,11 +153,11 @@ When you've validated the issue is real:
 4. **Commit the Change**
    ```bash
    git add <files>
-   git commit -m "fix: address sentry-io bot comment - <brief description>
+   git commit -m "fix: address sentry bot comment - <brief description>
 
    <detailed explanation of what was fixed>
 
-   Resolves issue identified by sentry-io bot.
+   Resolves issue identified by sentry bot.
    Severity: <severity>, Confidence: <confidence>
 
    🤖 Generated with [Claude Code](https://claude.com/claude-code)
@@ -174,7 +175,7 @@ When you've validated the issue is real:
 Provide a structured summary:
 
 ```markdown
-## Sentry-io Bot Comment Review
+## Sentry Bot Comment Review
 
 ### Comment Analysis
 - **Location**: file_path:line_number
@@ -200,7 +201,6 @@ Provide a structured summary:
 
 ### DO:
 - ✅ Always verify the bot's analysis before implementing
-- ✅ Check severity AND confidence scores together
 - ✅ Read surrounding code for context
 - ✅ Test fixes when possible
 - ✅ Provide detailed commit messages
@@ -215,7 +215,7 @@ Provide a structured summary:
 - ❌ Push directly to main/master
 - ❌ Forget to switch branches after fixing
 
-## Common Sentry-io Bot Issue Types
+## Common Sentry Bot Issue Types
 
 ### 1. Path Resolution Errors
 **Pattern**: Build scripts move files to wrong locations
@@ -253,7 +253,7 @@ If you determine a comment is a false positive:
 
 2. **Add a Comment to PR**
    ```bash
-   gh pr comment {pr_number} --body "Sentry-io bot comment at file:line appears to be a false positive because..."
+   gh pr comment {pr_number} --body "Sentry bot comment at file:line appears to be a false positive because..."
    ```
 
 3. **Consider Improving the Code**
@@ -267,6 +267,8 @@ If you determine a comment is a false positive:
 **Checkout PR**: `git fetch origin pull/{pr}/head:branch && git checkout branch`
 **Push fix**: `git push origin {branch-name}`
 **Switch back**: `git checkout main`
+
+For a comprehensive command reference, see [QUICKREF.md](QUICKREF.md).
 
 ## Example Workflow
 
@@ -288,13 +290,15 @@ git checkout fix-branch
 git add .
 git commit -m "fix: correct path in build script
 
-Fixes path resolution issue identified by sentry-io bot.
+Fixes path resolution issue identified by sentry bot.
 ..."
 git push origin fix-branch
 
 # 6. Return to main
 git checkout main
 ```
+
+For detailed real-world examples and scenarios, see [EXAMPLES.md](EXAMPLES.md).
 
 ## Success Criteria
 
